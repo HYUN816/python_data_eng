@@ -51,6 +51,7 @@ class Phone :
         print('게임하다.')
 
     def __str__(self):
+        # 주소값을 효과적으로 표현하기 위한 함수
         # 주소 대신에 주소가 가르키고 있는 멤버 변수의 값을 출력(프린트)
         return self.color + ' ' + str(self.ram)
 
@@ -58,17 +59,23 @@ class Phone :
 # 실제 사용 : 틀을 찍어낸다
 # myPhone = Phone()
 # yourPhone=Phone()
-myPhone = Phone('red', 256) #객체생성
+myPhone = Phone('red', 256) #객체생성 -> 변수 3개 생성된다.
+    #myPhone : 주소값, 'red' : r-e-d를 잇는 주소값, 256: int값
+    #int : 4bytes, 주소 : 4~8bytes / memory : 4+4+4 ~ 8+8+8
 yourPhone = Phone('blue', 128)
+
 
 #멤버변수와 멤버함수는 객체 생성 후 사용할 수 있다.
 
-# 컴퓨터의 흐름 : 동적인 모든 것 =cpu
-# 26분 다시
+# 컴퓨터의 흐름 : 동적인 모든 것(함수처리....) = cpu
+# 코딩할 때 모든 데이터(cpu가 처리하는 모든 데이터) 는 ram에 있어야한다.
 # cpu는 ram에 넣었다가 빼는 방식을 취하고 있다
 
+# cpu가 객체 생성해서 ram에 넣어놓는다.
+# ram에서 저장된 위치를 주소값으로 표시 / 주소값이 변수에 저장된다.
+
 # 주소 print
-# 해시값 = unique 15분 다시
+# 해시값 = unique (중복 불가능)
 print('주소>>', myPhone)
 print('주소>>', yourPhone)
 
@@ -82,8 +89,8 @@ print(yourPhone.color)
 
 # 대문자로 시작하고 () 있다면 -> 객체를 생성한 것
 
-# 오버라이딩
-# 오버로딩 : 파이선에서 지원하지 않는다.
+# 오버라이딩 : 부모가 물려준 것 대신 새로 지정해서 사용하는 것
+# 오버로딩 : 파이선에서 지원하지 않는다. because 입력값을 컨트롤 가능하기 때문
 
 
 #확인문제 -중급 풀이

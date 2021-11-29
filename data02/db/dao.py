@@ -3,6 +3,8 @@
 import pymysql
 
 # def create(id,pw,name,tel):
+# def create(vo):
+# vo : 값만 적어서 넘기는 것  / class로 만들어서 넘겨도 됨(재사용이필요할때)
 def create(data):
 
     # db connection
@@ -23,15 +25,25 @@ def create(data):
     # sql = "insert into member values('"+ data[0] +"','"+ data[1] +"','"+ data[2] +"','"+ data[3] +"')"
     # result = cur.execute(sql)
 
-    # 아래 코드가 속도가 제일 빠르다
+    # 아래 코드가 속도가 제일 빠르다.
+    # 미리 sql을 준비시킨 후 값을 나중에 넣기 때문 / 동시접속이 많아질수록
     # 모든 sql문의 결과는 int값이다.
     sql = "insert into member values(%s,%s,%s,%s)"
     result = cur.execute(sql, data)
     print('3. sql문을 만들어서 mysql로 보낸 후 결과 값>>', result)
 
-    # 22분 다시 /반영시키기
+    # 반영시키기
     conn.commit()
     conn.close()
+
+    # 서버에서는 ram, cpu 등을 유지하기 위한 관리가 필요하다
+    # 연결하고 끊고 * 여러번 -> cpu의 많은 자원들을 사용하게 된다.
+    # 그러므로 이를 위한 특별한 technique을 사용하게 된다.
+
+    # 서버는 얼마나 많은 요청을 감당할 수 있을까?
+    # 감당할 수 있는 connection 수가 정해져있다.
+    # 정해진 수위 넘으면 대기 ex) 코로나 백신 접종 사이트 대기자
+
 
 # 해당 모듈이 main이 되어서 실행될 때만, 실행해주는 부분
 # 전체 프로그램에서 main은 1개
@@ -82,6 +94,7 @@ def read(id):
     # sql
     sql = "select * from member where id=%s"
     result = cur.execute(sql, id)
+    # where 조건 : 조건에 pk가 주로 들어가게 된다.
 
     # 스트림안에 갖혀있는 걸 꺼내자!
     # but 출력된 내용은 다른 모듈에 만들어야한다 / 모듈 역할을 따로따로(입력,출력, 처리...)

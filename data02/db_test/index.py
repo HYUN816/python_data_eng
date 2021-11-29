@@ -16,8 +16,8 @@ def create():
 
     dao.create(mem_list)
 
-    # 강사님 풀이이
-   # vo = [id_text.get(),pw_text.get(),name_text.get(),tel_text.get()]
+    # 강사님 풀이
+    # vo = [id_text.get(),pw_text.get(),name_text.get(),tel_text.get()]
     # dao.create(vo)
 def delete():
     id = id_text.get()
@@ -29,11 +29,13 @@ w = Tk()
 w.geometry('500x800')
 w.config(bg='lightgray')
 
+# 라벨에다가 이미지를 끼워넣기
 icon=PhotoImage(file='../db_test/팬케이크쿠키.png')
 dogLabel=Label(w,image=icon)
 dogLabel.pack()
 #.pack() : 그래프에 올려주는 역할
 
+# 첫번째 파라미터 w-> 주소를 넣어줬다고 볼 수 있다.
 id_label = Label(w,text='아이디입력',font=('맑은 고딕',20),bg='lightgray',fg='blue')
 id_label.pack()
 
